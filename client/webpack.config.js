@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
@@ -30,14 +31,32 @@ module.exports = () => {
       }),
 
       // Create a new manifest JSON file 
-      
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Text-Editor',
+        short_name: 'jate editor',
+        description: 'creates and stores notes for later retrevial',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
+      new MiniCssExtractPlugin(),
     ],
 
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: [, 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         
         {
