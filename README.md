@@ -25,7 +25,7 @@ PWA-Text-Editor
 An app that allows you to create, store, and retreive code pieces without the internet
 
 ## Installation
-npm install, deployed at Heroku: 
+npm install, deployed at Heroku: https://pwa-text-editor-jb.herokuapp.com/
 
 ## Usage 
 Anyone can use
